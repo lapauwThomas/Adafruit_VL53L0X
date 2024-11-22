@@ -108,6 +108,33 @@ public:
                               VL53L0X_InterruptPolarity Polarity,
                               boolean debug = false);
 
+  VL53L0X_Error SetReferenceSpads(uint32_t refSpadCount,
+                                          uint8_t isApertureSpads,
+                                          boolean debug = false);
+
+  VL53L0X_Error PerformRefSpadManagement(uint32_t *refSpadCount,
+                                                 uint8_t *isApertureSpads,
+                                                 boolean debug = false);
+  VL53L0X_Error PerformRefCalibration(uint8_t *pVhvSettings,
+                                              uint8_t *pPhaseCal,
+                                              boolean debug = false);
+  VL53L0X_Error SetRefCalibration(uint8_t VhvSettings, uint8_t PhaseCal,
+                                          boolean debug = false);
+
+  VL53L0X_Error PerformOffsetCalibration(FixPoint1616_t CalDistanceMilliMeter,
+                                         int32_t *pOffsetMicroMeter,
+                                         boolean debug = false);
+  VL53L0X_Error  SetOffsetCalibrationDataMicroMeter(int32_t OffsetCalibrationDataMicroMeter,
+                                     boolean debug = false);
+  VL53L0X_Error  PerformXTalkCalibration(FixPoint1616_t XTalkCalDistance,
+                          FixPoint1616_t *pXTalkCompensationRateMegaCps,
+                          boolean debug = false);
+  VL53L0X_Error  SetXTalkCompensationRateMegaCps(FixPoint1616_t XTalkCompensationRateMegaCps,
+                                  boolean debug = false);
+                                  
+  VL53L0X_Error  SetXTalkCompensationEnable(uint8_t XTalkCompensationEnable,
+                                  boolean debug = false);                               
+
   VL53L0X_Error Status =
       VL53L0X_ERROR_NONE; ///< indicates whether or not the sensor has
                           ///< encountered an error

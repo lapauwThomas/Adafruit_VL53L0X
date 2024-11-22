@@ -972,3 +972,133 @@ FixPoint1616_t Adafruit_VL53L0X::getLimitCheckValue(uint16_t LimitCheckId) {
       VL53L0X_GetLimitCheckValue(pMyDevice, LimitCheckId, &LimitCheckValue);
   return (LimitCheckValue);
 }
+
+VL53L0X_Error
+Adafruit_VL53L0X::PerformOffsetCalibration(FixPoint1616_t CalDistanceMilliMeter,
+                                           int32_t *pOffsetMicroMeter,
+                                           boolean debug) {
+  VL53L0X_Error Status = VL53L0X_ERROR_NONE;
+
+  if (Status == VL53L0X_ERROR_NONE) {
+    if (debug) {
+      Serial.println(F("sVL53L0X: PerformOffsetCalibration"));
+    }
+    Status = VL53L0X_PerformOffsetCalibration(pMyDevice, CalDistanceMilliMeter,
+                                              pOffsetMicroMeter);
+  }
+  return Status;
+}
+
+VL53L0X_Error Adafruit_VL53L0X::SetOffsetCalibrationDataMicroMeter(
+    int32_t OffsetCalibrationDataMicroMeter, boolean debug) {
+  VL53L0X_Error Status = VL53L0X_ERROR_NONE;
+
+  if (Status == VL53L0X_ERROR_NONE) {
+    if (debug) {
+      Serial.println(F("sVL53L0X: SetOffsetCalibrationDataMicroMeter"));
+    }
+    Status = VL53L0X_SetOffsetCalibrationDataMicroMeter(
+        pMyDevice, OffsetCalibrationDataMicroMeter);
+  }
+  return Status;
+}
+VL53L0X_Error Adafruit_VL53L0X::PerformXTalkCalibration(
+    FixPoint1616_t XTalkCalDistance,
+    FixPoint1616_t *pXTalkCompensationRateMegaCps, boolean debug) {
+  VL53L0X_Error Status = VL53L0X_ERROR_NONE;
+
+  if (Status == VL53L0X_ERROR_NONE) {
+    if (debug) {
+      Serial.println(F("sVL53L0X: PerformXTalkCalibration"));
+    }
+    Status = VL53L0X_PerformXTalkCalibration(pMyDevice, XTalkCalDistance,
+                                             pXTalkCompensationRateMegaCps);
+  }
+  return Status;
+}
+
+VL53L0X_Error Adafruit_VL53L0X::SetXTalkCompensationRateMegaCps(
+    FixPoint1616_t XTalkCompensationRateMegaCps, boolean debug) {
+  VL53L0X_Error Status = VL53L0X_ERROR_NONE;
+
+  if (Status == VL53L0X_ERROR_NONE) {
+    if (debug) {
+      Serial.println(F("sVL53L0X: SetXTalkCompensationRateMegaCps"));
+    }
+    Status = VL53L0X_SetXTalkCompensationRateMegaCps(
+        pMyDevice, XTalkCompensationRateMegaCps);
+  }
+  return Status;
+}
+
+  VL53L0X_Error  Adafruit_VL53L0X::SetXTalkCompensationEnable(uint8_t XTalkCompensationEnable,
+                                  boolean debug) {
+  VL53L0X_Error Status = VL53L0X_ERROR_NONE;
+
+  if (Status == VL53L0X_ERROR_NONE) {
+    if (debug) {
+      Serial.println(F("sVL53L0X: VL53L0X_SetXTalkCompensationEnable"));
+    }
+    Status = VL53L0X_SetXTalkCompensationEnable( pMyDevice, XTalkCompensationEnable);
+  }
+  return Status;
+}                               
+
+
+
+  VL53L0X_Error Adafruit_VL53L0X::SetReferenceSpads(uint32_t refSpadCount,
+                                          uint8_t isApertureSpads,
+                                          boolean debug){
+    VL53L0X_Error Status = VL53L0X_ERROR_NONE;
+
+    if (Status == VL53L0X_ERROR_NONE) {
+      if (debug) {
+        Serial.println(F("sVL53L0X: SetXTalkCompensationRateMegaCps"));
+      }
+      Status =
+          VL53L0X_SetReferenceSpads(pMyDevice, refSpadCount, isApertureSpads);
+    }
+    return Status;
+  }
+
+  VL53L0X_Error Adafruit_VL53L0X::PerformRefSpadManagement(
+      uint32_t *refSpadCount, uint8_t *isApertureSpads, boolean debug) {
+    VL53L0X_Error Status = VL53L0X_ERROR_NONE;
+
+    if (Status == VL53L0X_ERROR_NONE) {
+      if (debug) {
+        Serial.println(F("sVL53L0X: PerformRefSpadManagement"));
+      }
+      Status =
+          VL53L0X_PerformRefSpadManagement(pMyDevice, refSpadCount, isApertureSpads);
+    }
+    return Status;
+  }
+  VL53L0X_Error Adafruit_VL53L0X::PerformRefCalibration(uint8_t *pVhvSettings,
+                                                        uint8_t *pPhaseCal,
+                                                        boolean debug) {
+    VL53L0X_Error Status = VL53L0X_ERROR_NONE;
+
+    if (Status == VL53L0X_ERROR_NONE) {
+      if (debug) {
+        Serial.println(F("sVL53L0X: PerformRefCalibration"));
+      }
+      Status =
+          VL53L0X_PerformRefCalibration(pMyDevice, pVhvSettings, pPhaseCal);
+    }
+    return Status;
+  }
+  VL53L0X_Error Adafruit_VL53L0X::SetRefCalibration(uint8_t VhvSettings,
+                                                    uint8_t PhaseCal,
+                                                    boolean debug) {
+    VL53L0X_Error Status = VL53L0X_ERROR_NONE;
+
+    if (Status == VL53L0X_ERROR_NONE) {
+      if (debug) {
+        Serial.println(F("sVL53L0X: SetRefCalibration"));
+      }
+      Status =
+          VL53L0X_SetRefCalibration(pMyDevice, VhvSettings, PhaseCal);
+    }
+    return Status;
+  }
